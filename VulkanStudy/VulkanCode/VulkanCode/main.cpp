@@ -2,16 +2,23 @@
 #include <iostream>
 
 #include "HelloTriangleApplication.h"
+#include "VulkanWindow.h"
 
 
 int main() {
 
 	HelloTriangleApplication app;
-
-
 	try
 	{
-		app.run();
+		VulkanWindow::GetInstance()->Init();
+
+
+		VulkanWindow::GetInstance()->Update();
+
+
+		VulkanWindow::GetInstance()->Destroy();
+		//app.run();
+		
 	}
 	catch (const std::exception& e)
 	{

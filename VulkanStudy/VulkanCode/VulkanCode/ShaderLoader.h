@@ -1,22 +1,19 @@
 #pragma once
-#include <fstream>
-#include <vector>
+#include "HeaderFile.h"
+#include "Loader.h"
+class ShaderLoader
+{
+public:
+	ShaderLoader();
+	virtual ~ShaderLoader();
+
+	VkShaderModule LoadShaderModule(VkDevice device, const std::string& filename);
+
+	void Destroy(VkDevice device,VkShaderModule shaderModule);
+
+private:
+	VkShaderModule createShaderModule(VkDevice device, const std::vector<char>& code);
 
 
-static std::vector<char> readFile(const std::string& filename) {
-	std::ifstream file(filename, std::ios::ate | std::ios::binary);
+};
 
-	if (!file.is_open()) {
-		throw std::runtime_error("failed to open file!");
-	}
-	size_t fileSize = (size_t)file.tellg();
-	std::vector<char> buffer(fileSize);
-
-	file.seekg(0);
-	file.read(buffer.data(), fileSize);
-
-
-	file.close();
-
-	return buffer;
-}

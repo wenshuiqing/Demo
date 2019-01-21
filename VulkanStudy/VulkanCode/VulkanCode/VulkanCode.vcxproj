@@ -152,10 +152,29 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="VulkanCommandPool.cpp" />
+    <ClCompile Include="VulkanWindow.cpp" />
+    <ClCompile Include="VulkanDebugUtilsMessenger.cpp" />
+    <ClCompile Include="VulkanDevice.cpp" />
+    <ClCompile Include="VulkanGraphicsManager.cpp" />
+    <ClCompile Include="VulkanGraphicsPipeline.cpp" />
+    <ClCompile Include="VulkanInstance.cpp" />
+    <ClCompile Include="VulkanSwapChainKHR.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HeaderFile.h" />
     <ClInclude Include="HelloTriangleApplication.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="VulkanCommandPool.h" />
+    <ClInclude Include="VulkanWindow.h" />
+    <ClInclude Include="VulkanDebugUtilsMessenger.h" />
+    <ClInclude Include="VulkanDevice.h" />
+    <ClInclude Include="VulkanGraphicsManager.h" />
+    <ClInclude Include="VulkanGraphicsPipeline.h" />
+    <ClInclude Include="VulkanInstance.h" />
+    <ClInclude Include="VulkanSwapChainKHR.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\shader.frag" />
