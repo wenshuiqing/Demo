@@ -4,6 +4,9 @@
 #include "VulkanDebugUtilsMessenger.h"
 #include "VulkanDevice.h"
 #include "VulkanSwapChainKHR.h"
+#include "VulkanGraphicsPipeline.h"
+#include "VulkanCommandPool.h"
+#include "VulkanLayerAndExtension.h"
 
 
 
@@ -20,6 +23,7 @@ VulkanGraphicsManager::~VulkanGraphicsManager()
 
 void VulkanGraphicsManager::Init()
 {
+
 	VulkanInstance::GetInstance()->Init();
 	VulkanDebugUtilsMessenger::GetInstance()->Init();
 	VulkanDevice::GetInstance()->Init();

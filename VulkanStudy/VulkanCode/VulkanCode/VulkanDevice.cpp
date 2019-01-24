@@ -1,6 +1,8 @@
 #include "VulkanDevice.h"
 #include <set>
 #include "VulkanWindow.h"
+#include "VulkanInstance.h"
+#include "VulkanLayerAndExtension.h"
 
 
 
@@ -100,13 +102,13 @@ void VulkanDevice::createLogicDevice()
 
 	createInfo.pEnabledFeatures = &deviceFeatures;
 
-	createInfo.enabledExtensionCount = static_cast<uint32_t>(deviceExtensions.size());
-	createInfo.ppEnabledExtensionNames = deviceExtensions.data();
+	createInfo.enabledExtensionCount = static_cast<uint32_t>(requestDeviceExtensions.size());
+	createInfo.ppEnabledExtensionNames = requestDeviceExtensions.data();
 
 
 	if (enableValidationLayers) {
-		createInfo.enabledLayerCount = static_cast<uint32_t>(VulkanInstance::GetInstance()->validationLayers.size());
-		createInfo.ppEnabledLayerNames = VulkanInstance::GetInstance()->validationLayers.data();
+		createInfo.enabledLayerCount = static_cast<uint32_t>(requestLayers.size());
+		createInfo.ppEnabledLayerNames = requestLayers.data();
 	}
 	else
 	{
@@ -190,7 +192,7 @@ bool VulkanDevice::isDeviceSuitable(VkPhysicalDevice device)
 	QueueFamilyIndices indices = findQueueFamilies(device);
 
 	//2.检查对设备的扩展的支持
-	bool extensionSupported = checkDeviceExtensionSupport(device);
+	bool extensionSupported =VulkanLayerAndExtension::GetInstance()->CheckExtensionSupport(requestDeviceExtensions,device);
 
 	bool swapChainAdequate = false;
 	if (extensionSupported) {
@@ -202,23 +204,6 @@ bool VulkanDevice::isDeviceSuitable(VkPhysicalDevice device)
 	return indices.isComplete() && extensionSupported&&swapChainAdequate;
 }
 
-bool VulkanDevice::checkDeviceExtensionSupport(VkPhysicalDevice device)
-{
-	uint32_t extensionCount;
-	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
-
-	std::vector<VkExtensionProperties> availableExtensions(extensionCount);
-	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, availableExtensions.data());
-
-	std::set<std::string> requiredExtensions(deviceExtensions.begin(), deviceExtensions.end());
-
-	for (const auto& extension : availableExtensions)
-	{
-		requiredExtensions.erase(extension.extensionName);
-	}
-
-	return requiredExtensions.empty();
-}
 
 SwapChainSupportDetails VulkanDevice::QuerySwapChainSupport()
 {

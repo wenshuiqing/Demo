@@ -1,4 +1,5 @@
 #include "VulkanInstance.h"
+#include "VulkanLayerAndExtension.h"
 
 
 VulkanInstance * VulkanInstance::instanceWrap = 0;
@@ -23,7 +24,7 @@ VulkanInstance* VulkanInstance::GetInstance()
 
 void VulkanInstance::Init()
 {
-	if (enableValidationLayers && !checkValidationLayersSupport()) {
+	if (enableValidationLayers && !VulkanLayerAndExtension::GetInstance()->CheckLayersSupport(requestLayers)) {
 		throw std::runtime_error("validation layers request,but not avaliable!");
 	}
 
@@ -59,8 +60,8 @@ void VulkanInstance::Init()
 	createInfo.ppEnabledExtensionNames = glfwExtensions.data();
 
 	if (enableValidationLayers) {
-		createInfo.enabledLayerCount = static_cast<uint32_t>(validationLayers.size());
-		createInfo.ppEnabledLayerNames = validationLayers.data();
+		createInfo.enabledLayerCount = static_cast<uint32_t>(requestLayers.size());
+		createInfo.ppEnabledLayerNames = requestLayers.data();
 	}
 	else
 	{
@@ -81,33 +82,6 @@ void VulkanInstance::Destory()
 }
 
 
-
-bool VulkanInstance::checkValidationLayersSupport()
-{
-	uint32_t layerCount;
-	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
-
-	std::vector<VkLayerProperties> avalidationLayers(layerCount);
-	vkEnumerateInstanceLayerProperties(&layerCount, avalidationLayers.data());
-
-
-	for (const char* layerName : validationLayers) {
-		bool layerFound = false;
-
-		for (const auto& layerProperties : avalidationLayers)
-		{
-			if (strcmp(layerName, layerProperties.layerName) == 0) {
-				layerFound = true;
-				break;
-			}
-		}
-		if (!layerFound) {
-			return false;
-		}
-	}
-
-	return true;
-}
 
 std::vector<const char*> VulkanInstance::getRequiredExtensions()
 {

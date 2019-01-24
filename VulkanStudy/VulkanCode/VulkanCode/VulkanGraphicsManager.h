@@ -1,9 +1,8 @@
 #pragma once
 #include "HeaderFile.h"
-#include "VulkanGraphicsPipeline.h"
-#include "VulkanCommandPool.h"
 
-
+class VulkanGraphicsPipeline;
+class VulkanCommandPool;
 class VulkanGraphicsManager
 {
 public:

@@ -1,13 +1,12 @@
 
 #include <iostream>
 
-#include "HelloTriangleApplication.h"
 #include "VulkanWindow.h"
 
 
 int main() {
 
-	HelloTriangleApplication app;
+
 	try
 	{
 		VulkanWindow::GetInstance()->Init();

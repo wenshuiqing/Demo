@@ -1,8 +1,7 @@
 #pragma once
 
 #include "HeaderFile.h"
-#include <optional>
-#include "VulkanInstance.h"
+
 
 struct QueueFamilyIndices {
 	std::optional<uint32_t> graphicsFamily;
@@ -19,9 +18,6 @@ struct SwapChainSupportDetails {
 };
 
 
-const std::vector<const char*> deviceExtensions = {
-	VK_KHR_SWAPCHAIN_EXTENSION_NAME
-};
 
 class VulkanDevice
 {
@@ -63,8 +59,6 @@ private:
 	SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device);
 	
 	bool isDeviceSuitable(VkPhysicalDevice device);
-
-	bool checkDeviceExtensionSupport(VkPhysicalDevice device);
 
 
 };

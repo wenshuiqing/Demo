@@ -1,12 +1,6 @@
 #pragma once
 #include "HeaderFile.h"
 
-#ifdef NDEBUG
-const bool enableValidationLayers = true;
-#else
-const bool enableValidationLayers = true;
-#endif
-
 
 class VulkanInstance
 {
@@ -16,9 +10,6 @@ private:
 public:
 	VkInstance instance;
 
-	const std::vector<const char*> validationLayers = {
-	"VK_LAYER_LUNARG_standard_validation"
-	};
 
 
 private:
@@ -38,7 +29,6 @@ public:
 
 
 private:
-	bool checkValidationLayersSupport();
 	std::vector<const char*> getRequiredExtensions();
 };
 

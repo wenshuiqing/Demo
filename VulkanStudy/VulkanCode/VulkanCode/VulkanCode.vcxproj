@@ -154,6 +154,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
     <ClCompile Include="VulkanCommandPool.cpp" />
+    <ClCompile Include="VulkanLayerAndExtension.cpp" />
     <ClCompile Include="VulkanWindow.cpp" />
     <ClCompile Include="VulkanDebugUtilsMessenger.cpp" />
     <ClCompile Include="VulkanDevice.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Loader.h" />
     <ClInclude Include="ShaderLoader.h" />
     <ClInclude Include="VulkanCommandPool.h" />
+    <ClInclude Include="VulkanLayerAndExtension.h" />
     <ClInclude Include="VulkanWindow.h" />
     <ClInclude Include="VulkanDebugUtilsMessenger.h" />
     <ClInclude Include="VulkanDevice.h" />

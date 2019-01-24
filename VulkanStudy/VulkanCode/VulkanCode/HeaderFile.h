@@ -13,3 +13,18 @@
 #include <set>
 #include<algorithm>
 #include <fstream>
+
+
+#ifdef NDEBUG
+const bool enableValidationLayers = true;
+#else
+const bool enableValidationLayers = true;
+#endif
+
+const  std::vector<const char*> requestLayers = {
+	"VK_LAYER_LUNARG_standard_validation"
+};
+const std::vector<const char*> requestDeviceExtensions = {
+	VK_KHR_SWAPCHAIN_EXTENSION_NAME
+};
+const std::vector<const char*> requestInstanceExtensions = {};
